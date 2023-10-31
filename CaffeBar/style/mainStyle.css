@@ -1,0 +1,17 @@
+body {
+    background-color: #FFF4E9;
+}
+.lightBrownBg {
+    background-color: #C3A29E;
+}
+.lightYellow {
+    background-color: #fff;
+}
+.inputClass {
+    width: 100%;
+    background-color: #FFF4E9;
+    border-radius: 10px;
+    color: #C3A29E;
+    margin: 2% 0%;
+    padding: 2% 0%;
+}
