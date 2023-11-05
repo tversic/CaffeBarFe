@@ -81,7 +81,7 @@ form {
 	text-align: center;
 }
 
-input {
+input, textarea {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
@@ -96,7 +96,7 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+	width: 1200px;
 	max-width: 100%;
 	min-height: 480px;
 }
@@ -110,7 +110,7 @@ input {
 
 .sign-in-container {
 	left: 0;
-	width: 50%;
+	width: 70%;
 	z-index: 2;
 }
 
@@ -118,6 +118,12 @@ input {
 	transform: translateX(100%);
 }
 
+.sign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
+}
 
 .container.right-panel-active .sign-up-container {
 	transform: translateX(100%);
@@ -141,8 +147,8 @@ input {
 .overlay-container {
 	position: absolute;
 	top: 0;
-	left: 50%;
-	width: 50%;
+	left: 70%;
+	width: 30%;
 	height: 100%;
 	overflow: hidden;
 	transition: transform 0.6s ease-in-out;
