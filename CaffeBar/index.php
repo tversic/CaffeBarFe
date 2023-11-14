@@ -33,9 +33,19 @@
               <button class="siteLink">Write new article</button>
             <?php endif; ?>
           </a>
+          <a href="reservations.php">
+            <?php if (isset($_COOKIE["username"])): ?>
+              <button class="siteLink">Manage reservations</button>
+            <?php endif; ?>
+          </a>
+          <a href="rentBaia.php">
+            <?php if (!isset($_COOKIE["username"])): ?>
+              <button class="siteLink">RENT A BAIA</button>
+            <?php endif; ?>
         </div>
+        </a>
         <div class="flexCenter" id="siteBrand">
-          MY AWESOME SITE
+          VERY BUSY CAFFE BAR
         </div>
         <div class="flexRight" id="loginButton">
           <a href="login.php">
@@ -59,28 +69,21 @@
       </div>
     </div>
 
-
-  </div>
-
-
-
-  </div>
-
-  <div class=" container" style="margin-bottom: 3%; margin-top: 5%">
-    <div class="row">
-      <div class="col-md-12">
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/UwkoRq_L8pE?si=tIw7LjnCe_QDU7v_"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+    <div class=" container" style="margin-bottom: 3%; margin-top: 5%">
+      <div class="row">
+        <div class="col-md-12">
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/UwkoRq_L8pE?si=tIw7LjnCe_QDU7v_"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
       </div>
     </div>
-  </div>
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 
 
@@ -143,14 +146,17 @@
       articleContainer.appendChild(headerContentWrapper);
 
       // Create the edit buttons and form here, similar to the existing ones
-      const editButton = document.createElement('button');
-      editButton.textContent = 'Edit';
-      editButton.className = 'edit-button';
-      // Add an event listener to handle the edit action (you'll need to define the edit function)
-      editButton.addEventListener('click', () => {
-        turnToEditForm(header, paragraph, editButton, index, posts); // Call a function to handle the edit action
-      });
-      headerContentWrapper.appendChild(editButton);
+      if (isCookieSet("username")) {
+        console.log("cookie is set");
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.className = 'edit-button';
+        // Add an event listener to handle the edit action (you'll need to define the edit function)
+        editButton.addEventListener('click', () => {
+          turnToEditForm(header, paragraph, editButton, index, posts); // Call a function to handle the edit action
+        });
+        headerContentWrapper.appendChild(editButton);
+      }
 
       // Optionally, add an even-odd class for styling
       if (index % 2 === 0) {
@@ -222,7 +228,6 @@
     editButtonContainer.appendChild(deleteButton);
 
     editButton.replaceWith(editButtonContainer);
-
 
     document.getElementById("edit").addEventListener('click', function () {
 
@@ -326,6 +331,26 @@
     editButton.style.display = "inline-block";
     editInput.value = "";
     elementToEdit = null; // Reset the elementToEdit
+  }
+
+  function isCookieSet(cookieName) {
+    // Get all cookies as a string
+    const allCookies = document.cookie;
+
+    // Split the string into an array of individual cookies
+    const cookiesArray = allCookies.split(";");
+
+    // Iterate through the cookies to find the one you're looking for
+    for (let i = 0; i < cookiesArray.length; i++) {
+      const cookie = cookiesArray[i].trim();
+
+      // Check if the cookie starts with the provided name
+      if (cookie.startsWith(cookieName + "=")) {
+        return true; // Cookie is set
+      }
+    }
+
+    return false; // Cookie is not set
   }
 </script>
 

@@ -103,5 +103,4 @@ if (isset($_COOKIE["username"])) {
         curl_close($ch);
     }
 }
-
 ?>
